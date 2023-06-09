@@ -20,6 +20,7 @@ Configure Caddy sites role.
             destination_url: https://example.com
           - domain_name: "test2.example.com"
             destination_url: https://example.com
+            compression: true
             headers_up:
               - operation: +
                 field: Host

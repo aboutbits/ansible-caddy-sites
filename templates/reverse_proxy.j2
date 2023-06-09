@@ -12,8 +12,11 @@
     header_down {% if header_down['operation'] is defined %}{{ header_down['operation'] }}{% endif %}{{ header_down['field'] }}{% if header_down['value'] is defined %} {{ header_down['value'] }}{% endif %}
 {% endfor %}
 {% endif %}
-
   }
+
+{% if (site['compression'] is defined and site['compression'] == true) %}
+  encode zstd gzip
+{% endif %}
 
   log {
     output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
