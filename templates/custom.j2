@@ -1,5 +1,5 @@
 {{ site['domain_name'] }} {
-  {{ lookup('ansible.builtin.template', site['config_file']) }}
+{{ lookup('ansible.builtin.template', site['config_file']) }}
 
 {% if (site['compression'] is defined and site['compression'] == true) %}
   encode zstd gzip
