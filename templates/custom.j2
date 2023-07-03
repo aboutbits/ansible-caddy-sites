@@ -1,0 +1,25 @@
+{{ site['domain_name'] }} {
+  {{ lookup('ansible.builtin.template', site['config_file']) }}
+
+{% if (site['compression'] is defined and site['compression'] == true) %}
+  encode zstd gzip
+{% endif %}
+
+  log {
+    output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
+      roll_size 50MiB
+      roll_keep 5
+      roll_keep_for 168h
+    }
+    format json
+  }
+
+{% if site['tls_dns'] is defined %}
+  tls {
+    dns {{ site['tls_dns']['provider'] }}{% if site['tls_dns']['config'] is defined %} {{ site['tls_dns']['config'] }}{% endif %} 
+  }
+{% endif %}
+{% if site['tls_certificate'] is defined %}
+  tls /etc/caddy/certificates/{{ site['domain_name'] }}-cert.pem /etc/caddy/certificates/{{ site['domain_name'] }}-key.pem
+{% endif %}
+}
