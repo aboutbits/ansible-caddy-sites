@@ -5,9 +5,9 @@ Configure Caddy sites role.
 
 ## Role Variables
 
-- `caddy_sites_reverse_proxy`: A list of sites, that should be configured as reverse proxy.
-- `caddy_sites_redirect`: A list of sites, that should be configured a redirect.
-- `caddy_sites_custom`: A list of sites, that should a custom configuration.
+- `caddy_sites_reverse_proxy`: A list of sites, that should be configured as reverse proxies.
+- `caddy_sites_redirect`: A list of sites, that should be configured as redirects.
+- `caddy_sites_custom`: A list of sites, that provide a custom configuration.
 
 ## Example Playbook
 
