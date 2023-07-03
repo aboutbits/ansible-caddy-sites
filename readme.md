@@ -5,7 +5,9 @@ Configure Caddy sites role.
 
 ## Role Variables
 
-- `caddy_sites_reverse_proxy`: A list of sites, that should be configured as reverse proxy.
+- `caddy_sites_reverse_proxy`: A list of sites, that should be configured as reverse proxies.
+- `caddy_sites_redirect`: A list of sites, that should be configured as redirects.
+- `caddy_sites_custom`: A list of sites, that provide a custom configuration.
 
 ## Example Playbook
 
@@ -42,6 +44,18 @@ Configure Caddy sites role.
           - domain_name: "test2.example.com"
             destination_url: https://example.com
             permanent: true
+        caddy_sites_custom:
+          - domain_name: "test1.example.com"
+            config_file: "./test1.example.com.j2"
+            compression: true
+            tls_dns:
+              provider: digitalocean
+              config: xxx
+          - domain_name: "test2.example.com"
+            config_file: "./test2.example.com.j2"
+            tls_certificate:
+              private_key: private-key-content
+              certificate: certificate-content
 ```
 
 
