@@ -21,7 +21,7 @@
 {% endif %}
 
   log {
-    output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
+    output file /var/log/caddy/{{ site['domain_name'] }}.log {
       roll_size 50MiB
       roll_keep 5
       roll_keep_for 168h
